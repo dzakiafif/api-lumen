@@ -15,10 +15,12 @@ $app->get('/', function () use ($app) {
     return $app->version();
 });
 
-$app->get('/task','TaskController@index');
+$app->group(['middleware'=>'cors'],function () use ($app){
+    $app->get('/task','TaskController@index');
 
-$app->post('/create-task','TaskController@create');
+    $app->post('/create-task','TaskController@create');
 
-$app->post('/update-task/{id}','TaskController@update');
+    $app->post('/update-task/{id}','TaskController@update');
 
-$app->delete('/delete-task/{id}','TaskController@delete');
+    $app->delete('/delete-task/{id}','TaskController@delete');
+});
