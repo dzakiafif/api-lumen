@@ -40,7 +40,7 @@ class TaskController extends Controller
         $task->address = $request->input('address');
         $task->save();
 
-        return response()->json($task);
+        return response()->json($task,200);
     }
 
     public function delete($id)
@@ -48,7 +48,7 @@ class TaskController extends Controller
         $task = Task::find($id);
         $task->delete();
 
-        return response()->json('deleted');
+        return response()->json(['message'=>"data has been deleted"],200);
     }
 
 }
