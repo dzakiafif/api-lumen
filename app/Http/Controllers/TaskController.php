@@ -17,38 +17,26 @@ class TaskController extends Controller
 
     public function index()
     {
-        $task = Task::all();
-
-        if(!$task){
-            return response()->json(['message'=>"data not found"],404);
-        }
-
-        return response()->json($task,200);
+       $task = new Task();
+       return $task->showTask();
     }
 
     public function create(Request $request)
     {
-        $task = Task::create($request->all());
-
-        return response()->json($task,200);
+        $task = new Task();
+        return $task->createTask($request);
     }
 
     public function update(Request $request,$id)
     {
-        $task = Task::find($id);
-        $task->author = $request->input('author');
-        $task->address = $request->input('address');
-        $task->save();
-
-        return response()->json($task,200);
+        $task = new Task();
+        return $task->updateTask($request,$id);
     }
 
     public function delete($id)
     {
-        $task = Task::find($id);
-        $task->delete();
-
-        return response()->json(['message'=>"data has been deleted"],200);
+        $task = new Task();
+        return $task->deleteTask($id);
     }
 
 }

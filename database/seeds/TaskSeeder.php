@@ -19,13 +19,13 @@ class TaskSeeder extends Seeder
     public function run()
     {
         Task::create([
-            'author' => 'anggita',
-            'address' => 'jl.menara34'
+            'name' => 'lorem ipsum',
+            'status' => 'done'
         ]);
 
         Task::create([
-            'author' => 'dito',
-            'address' => 'jl.bunga desember'
+            'name' => 'something',
+            'status' => 'no'
         ]);
     }
 }
