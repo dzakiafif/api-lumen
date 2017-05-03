@@ -18,7 +18,16 @@ class Task extends Model
 
     public function createTask(Request $request)
     {
-        $task = Task::create($request->all());
+        $task = new Task();
+        if($request->get('name') != null){
+            $task->name = $request->get('name');
+        }
+
+        if($request->get('status') != null){
+            $task->status = $request->get('status');
+        }
+
+        $task->save();
 
         return response()->json($task,200);
     }
