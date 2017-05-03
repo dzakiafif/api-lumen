@@ -15,7 +15,6 @@ use Illuminate\Http\Request;
 class Task extends Model
 {
     protected $table = 'tasks';
-    protected $fillable = ['name','status'];
 
     public function createTask(Request $request)
     {
@@ -27,8 +26,15 @@ class Task extends Model
     public function updateTask(Request $request,$id)
     {
         $task = Task::find($id);
-        $task->name = $request->input('name');
-        $task->status = $request->input('status');
+
+        if($request->get('name') != null){
+            $task->name = $request->get('name');
+        }
+
+        if($request->get('status') != null){
+            $task->status = $request->get('status');
+        }
+
         $task->save();
 
         return response()->json($task,200);
